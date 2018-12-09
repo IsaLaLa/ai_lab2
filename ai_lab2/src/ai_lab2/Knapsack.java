@@ -3,21 +3,20 @@ package ai_lab2;
 import java.util.ArrayList;
 
 public class Knapsack {
+	private final int maxCapacity; //how much weight the knapsack can hold, unchangeable once set
 	private int value; //how much value the knapsack currently has
 	private int weight; //how much the knapsack is currently weighting
-	private int maxCapacity; //how much weight the knapsack can hold
-	private ArrayList<Item> items; //keep track of the added items to the knapsack
+	private ArrayList<Item> items; //to keep track of the added items to the knapsack
 	
 	public Knapsack(int maxCapacity) {
 		this.maxCapacity = maxCapacity;
 		this.value = 0;
 		this.weight = 0;
-		//maxCapacity.isMutable = false; //possible to make unchangable after giving value?
 		items = new ArrayList<Item>();
 	}
 	
 	/**
-	 * returns the knapcacks maximum capacity
+	 * returns the knapsacks maximum capacity
 	 * @return
 	 */
 	public int getMaxCapacity() {
