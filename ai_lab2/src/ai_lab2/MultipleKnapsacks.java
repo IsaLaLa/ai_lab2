@@ -18,8 +18,15 @@ public class MultipleKnapsacks {
     public ArrayList<Item> getItems() {
         return items;
     }
+    
+    public void addKnapsack(Knapsack knapsack) {
+    	if(knapsack != null) {
+    		knapsacks.add(knapsack);
+    	}
+    }
 	
 	public MultipleKnapsacks neighborSearch(MultipleKnapsacks knapsacks) {
+		//to be implemented
 		return null;
 	}
 }

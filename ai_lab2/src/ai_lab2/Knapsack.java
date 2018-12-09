@@ -89,7 +89,4 @@ public class Knapsack {
 	public ArrayList<Item> getItems() {
 		return items;
 	}
-	
-	//......
-
 }
