@@ -25,5 +25,9 @@ public class Item {
 	public int getWeight() {
 		return weight;
 	}
+	
+	public int calcBenefit() {
+		return (value / weight);
+	}
 
 }
