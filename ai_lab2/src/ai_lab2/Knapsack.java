@@ -24,6 +24,6 @@ public class Knapsack {
 		return (item.getValue() / item.getWeight());
 	}
 	
-	//.....
+	//......
 
 }
