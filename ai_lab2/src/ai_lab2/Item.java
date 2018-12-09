@@ -9,7 +9,7 @@ public class Item {
 		this.weight = weight;
 	}
 	
-	//another solution ---> give random values and weight within given intervall?
+	//another solution ---> give random values to weight resp. value within given interval?
 	public void setValue(int value) {
 		this.value = value;
 	}
