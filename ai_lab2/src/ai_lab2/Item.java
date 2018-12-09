@@ -58,5 +58,4 @@ public class Item {
 	public double calcBenefit() {
 		return (value / weight);
 	}
-
 }

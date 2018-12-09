@@ -42,7 +42,6 @@ public class Knapsack {
 		for(int i = 0; i < items.size(); i++) {
 			weight += items.get(i).getWeight();
 		}
-		
 		return weight;
 	}
 	
@@ -54,7 +53,6 @@ public class Knapsack {
 		for(int i = 0; i < items.size(); i++) {
 			value += items.get(i).getValue();
 		}
-		
 		return value;
 	}
 	
