@@ -38,9 +38,9 @@ public class Knapsack {
 	 * calculates and returns the knapsacks current weight
 	 * @return
 	 */
-	public int getTotalWeight() {
+	public int getKnapSackWeight() {
 		for(int i = 0; i < items.size(); i++) {
-			weight += items.get(i).getWeight();
+			weight += items.get(i).getItemWeight();
 		}
 		return weight;
 	}
@@ -49,9 +49,9 @@ public class Knapsack {
 	 * calculates and returns the knapsacks current value
 	 * @return
 	 */
-	public int getTotalValue() {
+	public int getKnapSackValue() {
 		for(int i = 0; i < items.size(); i++) {
-			value += items.get(i).getValue();
+			value += items.get(i).getItemValue();
 		}
 		return value;
 	}
@@ -63,8 +63,8 @@ public class Knapsack {
 	public void addItem(Item item) {
 		if(item != null) {
 			items.add(item);
-			value += item.getValue();
-			weight += item.getWeight();
+			value += item.getItemValue();
+			weight += item.getItemWeight();
 		}
 	}
 	
@@ -75,8 +75,8 @@ public class Knapsack {
 	public void removeItem(Item item) {
 		if(item != null) {
 			items.remove(item);
-			value -= item.getValue();
-			weight -= item.getWeight();	
+			value -= item.getItemValue();
+			weight -= item.getItemWeight();	
 		}
 	}
 	
