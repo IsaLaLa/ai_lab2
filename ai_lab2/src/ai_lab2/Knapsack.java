@@ -16,10 +16,6 @@ public class Knapsack {
 		return capacity;
 	}
 	
-	public int getBenefit() {
-		return benefit;
-	}
-	
 	public int calcBenefit(Item item) {
 		return (item.getValue() / item.getWeight());
 	}
