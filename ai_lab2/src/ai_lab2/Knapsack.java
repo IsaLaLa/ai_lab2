@@ -40,15 +40,23 @@ public class Knapsack {
 	}
 	
 	public void addItem(Item item) {
-		items.add(item);
-		value += item.getValue();
-		weight += item.getWeight();
+		if(item != null) {
+			items.add(item);
+			value += item.getValue();
+			weight += item.getWeight();
+		}
 	}
 	
 	public void removeItem(Item item) {
-		items.remove(item);
-		value -= item.getValue();
-		weight -= item.getWeight();
+		if(item != null) {
+			items.remove(item);
+			value -= item.getValue();
+			weight -= item.getWeight();	
+		}
+	}
+	
+	public ArrayList<Item> getItems() {
+		return items;
 	}
 	
 	//......
