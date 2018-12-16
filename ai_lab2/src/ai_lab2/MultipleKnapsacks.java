@@ -51,7 +51,7 @@ public class MultipleKnapsacks {
     /**
      * solving the multiple knapsack problem by using neighborhood search
      */
-	public void neighborSearch() {
+	public void neighborSearchSolution(ArrayList<Item> items) {
 		//to be implemented
 	}
 	
