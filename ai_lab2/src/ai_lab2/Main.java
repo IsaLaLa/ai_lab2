@@ -45,7 +45,7 @@ public class Main {
 		
 		mk.setItemList(items);
 		mk.testAdding();
-		mk.printKnapsSacks();
+		mk.printKnapsacks();
 		
 		//testGreedySolution();
 		//testNeighborSearchSolution();

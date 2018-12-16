@@ -88,7 +88,7 @@ public class MultipleKnapsacks {
 	/**
 	 * prints all the knapsacks and their content
 	 */
-	public void printKnapsSacks() {
+	public void printKnapsacks() {
 		String format1 = "%-7s %s\n";
 		String format2 = "%-7s %d\n";
 		Knapsack currentKnapsack;
