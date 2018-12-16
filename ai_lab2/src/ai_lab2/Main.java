@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *
  */
 public class Main {
-	private static  MultipleKnapsacks knapsacks;
+	private static MultipleKnapsacks knapsacks;
 	private static ArrayList<Item> items;
 	
 	/**
@@ -35,19 +35,19 @@ public class Main {
 		
 		//creates a list of items
 		items = new ArrayList<Item>();
-		items.add(new Item(2, 5)); //(value, weight)
+		items.add(new Item(2, 88)); //(value, weight)
 		items.add(new Item(6, 2));
 		items.add(new Item(1, 3));
-		items.add(new Item(5, 1));
-		items.add(new Item(7, 4));
-		items.add(new Item(4, 3));
-		items.add(new Item(8, 6));
-		items.add(new Item(11, 5));
+		items.add(new Item(5, 99));
+//		items.add(new Item(7, 4));
+//		items.add(new Item(4, 3));
+//		items.add(new Item(8, 6));
+//		items.add(new Item(11, 5));
 		
 		//testGreedySolution();
 		//testNeighborSearchSolution();
 		
-		knapsacks.testAdding();
+		knapsacks.testAdding(items);
 		knapsacks.printKnapsSacks();
 		//not complete yet
 		//some method to print solution to verify its correctness

@@ -5,33 +5,16 @@ package ai_lab2;
  * Each item has a value and a weight, and a benefit-attribute
  */
 public class Item {
-	private double value;
-	private double weight;
+	private int value;
+	private int weight;
 	
 	/**
 	 * constructor
 	 * @param value
 	 * @param weight
 	 */
-	public Item(double value, double weight) {
+	public Item(int value, int weight) {
 		this.value = value;
-		this.weight = weight;
-	}
-	
-	//another solution ---> give random values to weight resp. value within given interval?
-	/**
-	 * sets the item큦 value
-	 * @param value
-	 */
-	public void setValue(double value) {
-		this.value = value;
-	}
-	
-	/**
-	 * sets the item큦 weight 
-	 * @param weight
-	 */
-	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 	
@@ -39,7 +22,7 @@ public class Item {
 	 * returns the item큦 value
 	 * @return value
 	 */
-	public double getValue() {
+	public int getValue() {
 		return value;
 	}
 	
@@ -47,7 +30,7 @@ public class Item {
 	 * returns the item큦 weight
 	 * @return weight
 	 */
-	public double getWeight() {
+	public int getWeight() {
 		return weight;
 	}
 	
@@ -56,6 +39,6 @@ public class Item {
 	 * @return the items benefit
 	 */
 	public double getBenefit() {
-		return (value / weight);
+		return (double) (value / weight);
 	}
 }

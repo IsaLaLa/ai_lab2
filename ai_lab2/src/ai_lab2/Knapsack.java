@@ -14,7 +14,6 @@ public class Knapsack {
 	private int value; //how much value the knapsack currently has
 	private int weight; //how much the knapsack is currently weighting
 	private ArrayList<Item> items; //to keep track of the added items to the knapsack
-	private int knapsackNbr = 0;
 	
 	/**
 	 * constructor
@@ -25,7 +24,6 @@ public class Knapsack {
 		this.value = 0;
 		this.weight = 0;
 		items = new ArrayList<Item>();
-		this.knapsackNbr++;
 	}
 	
 	/**
@@ -41,10 +39,11 @@ public class Knapsack {
 	 * @return
 	 */
 	public int getWeight() {
+		int currentWeight = 0;
 		for(int i = 0; i < items.size(); i++) {
-			weight += items.get(i).getWeight();
+			currentWeight = currentWeight + items.get(i).getWeight();
 		}
-		return weight;
+		return currentWeight;
 	}
 	
 	/**
@@ -52,10 +51,11 @@ public class Knapsack {
 	 * @return
 	 */
 	public int getValue() {
+		int currentValue = 0;
 		for(int i = 0; i < items.size(); i++) {
-			value += items.get(i).getValue();
+			currentValue = currentValue + items.get(i).getValue();
 		}
-		return value;
+		return currentValue;
 	}
 	
 	/**
@@ -64,9 +64,9 @@ public class Knapsack {
 	 */
 	public void addItem(Item item) {
 		if(item != null) {
+			value = value +  item.getValue();
+			weight = weight + item.getWeight();
 			items.add(item);
-			value += item.getValue();
-			weight += item.getWeight();
 		}
 	}
 	
@@ -76,9 +76,9 @@ public class Knapsack {
 	 */
 	public void removeItem(Item item) {
 		if(item != null) {
+			value = value - item.getValue();
+			weight = weight - item.getWeight();	
 			items.remove(item);
-			value -= item.getValue();
-			weight -= item.getWeight();	
 		}
 	}
 	
@@ -88,15 +88,5 @@ public class Knapsack {
 	 */
 	public ArrayList<Item> getItems() {
 		return items;
-	}
-	
-	/**
-	 * returns the knapsacks number
-	 * used to identify a knapsack when 
-	 * printing the multiple knapsacks
-	 * @return
-	 */
-	public int getKnapsackNbr() {
-		return knapsackNbr;
 	}
 }
