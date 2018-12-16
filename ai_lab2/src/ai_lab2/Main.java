@@ -29,23 +29,26 @@ public class Main {
 		//creates a list of knapsacks with varying maximum weight capacity
 		knapsacks = new MultipleKnapsacks();
 		knapsacks.addKnapsack(new Knapsack(25));
-		knapsacks.addKnapsack(new Knapsack(30));
 		knapsacks.addKnapsack(new Knapsack(15));
-		knapsacks.addKnapsack(new Knapsack(40));
+		//knapsacks.addKnapsack(new Knapsack(15));
+		//knapsacks.addKnapsack(new Knapsack(40));
 		
 		//creates a list of items
 		items = new ArrayList<Item>();
-		items.add(new Item(2, 8)); //(value, weight)
-		items.add(new Item(6, 10));
+		items.add(new Item(2, 5)); //(value, weight)
+		items.add(new Item(6, 2));
 		items.add(new Item(1, 3));
-		items.add(new Item(5, 5));
-		items.add(new Item(7, 5));
-		items.add(new Item(4, 6));
+		items.add(new Item(5, 1));
+		items.add(new Item(7, 4));
+		items.add(new Item(4, 3));
 		items.add(new Item(8, 6));
-		items.add(new Item(11, 9));
+		items.add(new Item(11, 5));
 		
-		testGreedySolution();
-		testNeighborSearchSolution();
+		//testGreedySolution();
+		//testNeighborSearchSolution();
+		
+		knapsacks.testAdding();
+		knapsacks.printKnapsSacks();
 		//not complete yet
 		//some method to print solution to verify its correctness
 	}

@@ -23,7 +23,7 @@ public class Item {
 	 * sets the item큦 value
 	 * @param value
 	 */
-	public void setItemValue(double value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 	
@@ -31,7 +31,7 @@ public class Item {
 	 * sets the item큦 weight 
 	 * @param weight
 	 */
-	public void setItemWeight(double weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 	
@@ -39,7 +39,7 @@ public class Item {
 	 * returns the item큦 value
 	 * @return value
 	 */
-	public double getItemValue() {
+	public double getValue() {
 		return value;
 	}
 	
@@ -47,7 +47,7 @@ public class Item {
 	 * returns the item큦 weight
 	 * @return weight
 	 */
-	public double getItemWeight() {
+	public double getWeight() {
 		return weight;
 	}
 	
