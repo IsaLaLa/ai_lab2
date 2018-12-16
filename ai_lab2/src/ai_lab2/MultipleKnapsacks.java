@@ -89,7 +89,8 @@ public class MultipleKnapsacks {
 	 * prints all the knapsacks and their content
 	 */
 	public void printKnapsSacks() {
-		String format = "%-7s %d\n";
+		String format1 = "%-7s %s\n";
+		String format2 = "%-7s %d\n";
 		Knapsack currentKnapsack;
 		ArrayList<Item> itemList;
 		Item currentItem;
@@ -97,19 +98,22 @@ public class MultipleKnapsacks {
 		for(int i = 0; i < knapsacks.size(); i++) {
 			
 			System.out.println("Knapsack " + i);
+			System.out.println("--- Items ---------------------------");
+			System.out.printf(format1, "Value", "Weight");
 			currentKnapsack = knapsacks.get(i);
 			itemList = currentKnapsack.getItems();
 			
 			//skriver ut varje items value och weight för en knapsack
 			for(int j = 0; j < itemList.size(); j++) {
 				currentItem = itemList.get(j);
-				System.out.printf(format, currentItem.getValue(), currentItem.getWeight());
+				System.out.printf(format2, currentItem.getValue(), currentItem.getWeight());
 			}
 			
+			System.out.println("--- Knapsack properties -------------");
 			System.out.println("Total value: " + currentKnapsack.getValue());
 			System.out.println("Total weight: " + currentKnapsack.getWeight());
 			System.out.println("Maximum capacity: " + currentKnapsack.getMaxCapacity());
-			System.out.println();
+			System.out.println("\n");
 		}
 	}
 	
