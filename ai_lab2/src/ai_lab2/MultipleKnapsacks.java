@@ -22,6 +22,10 @@ public class MultipleKnapsacks {
         return knapsacks;
     }
     
+    public void setItemList(ArrayList<Item> items) {
+    	this.items = items;
+    }
+    
     /**
      * returns the list of items
      * @return
@@ -54,57 +58,69 @@ public class MultipleKnapsacks {
 	public void neighborSearchSolution(ArrayList<Item> items) {
 		//to be implemented
 	}
-	
-	/**
-	 * prints all the knapsacks and their content
-	 */
-	public void printKnapsSacks() {
-		String format = "%-7s %d\n";
-//		Knapsack currentKnapsack;
-		ArrayList<Item> itemList;
-		Item item;
-		
-		for(int i = 0; i < knapsacks.size(); i++) {
-			
-			System.out.println("Knapsack " + i);
-//			currentKnapsack = knapsacks.get(i);
-			itemList = knapsacks.get(i).getItems();
-			
-			//skriver ut varje items value och weight för knapsack
-			for(int j = 0; j < itemList.size(); j++) {
-				item = itemList.get(i);
-				System.out.printf(format, item.getValue(), item.getWeight());
-			}
-			
-			System.out.println("Total value: " + knapsacks.get(i).getValue());
-			System.out.println("Total weight: " + knapsacks.get(i).getWeight());
-			System.out.println("Maximum capacity: " + knapsacks.get(i).getMaxCapacity());
-			System.out.println();
-		}
-	}
-	
-	//bara för att testa att lägga till items i en knapsack, ska bort sen
-	public void testAdding(ArrayList<Item> items) {
-		this.items = items;
+
+	// bara för att testa att lägga till items i en knapsack, ska bort sen
+	public void testAdding() {
 		Item item;
 		int knapsackNbr;
-		
-		for(int i = 0; i < items.size(); i++) {
-			if(i == 0 || i == 1) {
+
+		for (int i = 0; i < items.size(); i++) {
+
+			// testar att lägga till 2 items vardera i de två existerande knapsacksen
+			if (i == 0 || i == 1) {
 				knapsackNbr = 0;
 			} else {
 				knapsackNbr = 1;
 			}
-			
+
 			item = items.get(i);
 			knapsacks.get(knapsackNbr).addItem(item);
-			
-				
+
 			System.out.println("Added item in knapsack " + knapsackNbr);
 			System.out.println("Item value: " + item.getValue());
 			System.out.println("Item weight: " + item.getWeight());
 			System.out.println("current value in knapsack " + knapsackNbr + " is now: " + knapsacks.get(knapsackNbr).getValue());
 			System.out.println("current weight in knapsack " + knapsackNbr + " is now: " + knapsacks.get(knapsackNbr).getWeight());
+			System.out.println();
+		}
+	}
+
+	/**
+	 * prints all the knapsacks and their content
+	 */
+	public void printKnapsSacks() {
+		String format = "%-7s %d\n";
+		Knapsack currentKnapsack;
+		ArrayList<Item> itemList;
+		Item currentItem;
+				
+		for(int i = 0; i < knapsacks.size(); i++) {
+			
+			System.out.println("Knapsack " + i);
+			currentKnapsack = knapsacks.get(i);
+			itemList = currentKnapsack.getItems();
+			
+			//skriver ut varje items value och weight för en knapsack
+			for(int j = 0; j < itemList.size(); j++) {
+				currentItem = itemList.get(j);
+				System.out.printf(format, currentItem.getValue(), currentItem.getWeight());
+			}
+			
+			System.out.println("Total value: " + currentKnapsack.getValue());
+			System.out.println("Total weight: " + currentKnapsack.getWeight());
+			System.out.println("Maximum capacity: " + currentKnapsack.getMaxCapacity());
+			System.out.println();
+		}
+	}
+	
+	/**
+	 * testing purposes
+	 */
+	public void printItemList() {
+		for(int i = 0; i < items.size(); i++) {
+			System.out.println("Item " + i);
+			System.out.println("value: " + items.get(i).getValue());
+			System.out.println("weight: " + items.get(i).getWeight());
 			System.out.println();
 		}
 	}

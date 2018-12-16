@@ -89,4 +89,12 @@ public class Knapsack {
 	public ArrayList<Item> getItems() {
 		return items;
 	}
+	
+	/**
+	 * returns the knapsacks item at a specific index
+	 * @return
+	 */
+	public Item getItem(int index) {
+		return items.get(index);
+	}
 }

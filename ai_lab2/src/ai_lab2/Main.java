@@ -8,30 +8,29 @@ import java.util.ArrayList;
  *
  */
 public class Main {
-	private static MultipleKnapsacks knapsacks;
+	private static MultipleKnapsacks mk;
 	private static ArrayList<Item> items;
 	
 	/**
 	 * method for testing the greedy solution
 	 */
 	public static void testGreedySolution() {
-		knapsacks.greedySolution(items);
+		mk.greedySolution(items);
 	}
 	
 	/**
 	 * method for testing the neighbor search solution
 	 */
 	public static void testNeighborSearchSolution() {
-		knapsacks.neighborSearchSolution(items);
+		mk.neighborSearchSolution(items);
 	}
 	
 	public static void main(String[] args) {
 		//creates a list of knapsacks with varying maximum weight capacity
-		knapsacks = new MultipleKnapsacks();
-		knapsacks.addKnapsack(new Knapsack(25));
-		knapsacks.addKnapsack(new Knapsack(15));
-		//knapsacks.addKnapsack(new Knapsack(15));
-		//knapsacks.addKnapsack(new Knapsack(40));
+		mk = new MultipleKnapsacks();
+		mk.addKnapsack(new Knapsack(25));
+		mk.addKnapsack(new Knapsack(15));
+		//mk.addKnapsack(new Knapsack(40));
 		
 		//creates a list of items
 		items = new ArrayList<Item>();
@@ -44,12 +43,13 @@ public class Main {
 //		items.add(new Item(8, 6));
 //		items.add(new Item(11, 5));
 		
+		mk.setItemList(items);
+		mk.testAdding();
+		mk.printKnapsSacks();
+		
 		//testGreedySolution();
 		//testNeighborSearchSolution();
 		
-		knapsacks.testAdding(items);
-		knapsacks.printKnapsSacks();
 		//not complete yet
-		//some method to print solution to verify its correctness
 	}
 }
