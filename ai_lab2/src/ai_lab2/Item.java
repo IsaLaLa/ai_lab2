@@ -55,7 +55,7 @@ public class Item {
 	 * calculates and returns the item´s benefit
 	 * @return the items benefit
 	 */
-	public double gettBenefit() {
+	public double getBenefit() {
 		return (value / weight);
 	}
 }
