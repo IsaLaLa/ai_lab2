@@ -20,6 +20,7 @@ public class Knapsack {
 	 * @param maxCapacity
 	 */
 	public Knapsack(int maxCapacity) {
+		if (maxCapacity < 0) throw new IllegalArgumentException("Knapsack capacity must be greater than 0");
 		this.maxCapacity = maxCapacity;
 		this.value = 0;
 		this.weight = 0;
@@ -39,11 +40,11 @@ public class Knapsack {
 	 * @return
 	 */
 	public int getWeight() {
-		int currentWeight = 0;
-		for(int i = 0; i < items.size(); i++) {
-			currentWeight = currentWeight + items.get(i).getWeight();
-		}
-		return currentWeight;
+//		int currentWeight = 0;
+//		for(int i = 0; i < items.size(); i++) {
+//			currentWeight = currentWeight + items.get(i).getWeight();
+//		}
+		return weight;
 	}
 	
 	/**
@@ -51,11 +52,11 @@ public class Knapsack {
 	 * @return
 	 */
 	public int getValue() {
-		int currentValue = 0;
-		for(int i = 0; i < items.size(); i++) {
-			currentValue = currentValue + items.get(i).getValue();
-		}
-		return currentValue;
+//		int currentValue = 0;
+//		for(int i = 0; i < items.size(); i++) {
+//			currentValue = currentValue + items.get(i).getValue();
+//		}
+		return value;
 	}
 	
 	/**
