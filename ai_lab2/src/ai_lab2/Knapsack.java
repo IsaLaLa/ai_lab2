@@ -97,4 +97,27 @@ public class Knapsack {
 	public Item getItem(int index) {
 		return items.get(index);
 	}
+	
+	/**
+	 * prints the items of the knapsack
+	 */
+	public void printItems() {
+		String format1 = "%-7s %s\n";
+		String format2 = "%-7s %d\n";
+		Item currentItem;
+		
+		System.out.println("--- Items ---------------------------");
+		System.out.printf(format1, "Value", "Weight");
+		
+		for(int i = 0; i < items.size(); i++) {
+			currentItem = items.get(i);
+			System.out.printf(format2, currentItem.getValue(), currentItem.getWeight());
+		}
+		
+		System.out.println("--- Knapsack properties -------------");
+		System.out.println("Total value: " + value);
+		System.out.println("Total weight: " + weight);
+		System.out.println("Maximum capacity: " + maxCapacity);
+		System.out.println("\n");
+	}
 }
