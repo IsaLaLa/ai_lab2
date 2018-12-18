@@ -1,7 +1,5 @@
 package ai_lab2;
 
-import java.util.ArrayList;
-
 /**
  * Represents a knapsack that can hold a set of items.
  * The knapsack has a limited amount of weight 
@@ -24,6 +22,34 @@ public class Knapsack {
 		this.maxCapacity = maxCapacity;
 		this.value = 0;
 		this.weight = 0;
+	}
+	
+	/**
+	 * adds an item to the knapsack
+	 * @param item
+	 * @throws Exception 
+	 */
+	public void addItem(Item item) throws IllegalArgumentException {
+		if(item != null) {
+			if (isFull()) throw new IllegalArgumentException("Knapsack is already full");
+			if (!doesItemFit(item)) throw new IllegalArgumentException("item " + item.getWeight() + " does not fit, maxCap: " + maxCapacity);
+			items.add(item);
+			value += item.getValue();
+			weight += item.getWeight();
+		}
+	}
+	
+	/**
+	 * removes an item from the knapsack
+	 * @param item
+	 */
+	public Item removeHeuristic() {
+		Item item = items.removeLowestWeight();
+		if (item != null) {
+			value -= item.getValue();
+			weight -= item.getWeight();
+		}
+		return item;
 	}
 	
 	/**
@@ -67,34 +93,6 @@ public class Knapsack {
 	public void printItems() {
 		items.printItems();
 	}
-	
-	/**
-	 * adds an item to the knapsack
-	 * @param item
-	 * @throws Exception 
-	 */
-	public void addItem(Item item) throws IllegalArgumentException {
-		if(item != null) {
-			if (isFull()) throw new IllegalArgumentException("Knapsack is already full");
-			if (!doesItemFit(item)) throw new IllegalArgumentException("item " + item.getWeight() + " does not fit, maxCap: " + maxCapacity);
-			items.add(item);
-			value += item.getValue();
-			weight += item.getWeight();
-		}
-	}
-	
-//	/**
-//	 * removes an item from the knapsack
-//	 * @param item
-//	 */
-//	public void removeItem(Item item) {
-//		if(item != null) {
-//			if (items.items.remove(item)) {
-//				value = value - item.getValue();
-//				weight = weight - item.getWeight();	
-//			}
-//		}
-//	}
 	
 //	/**
 //	 * returns the knapsack´s items

@@ -1,5 +1,6 @@
 package ai_lab2;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -54,7 +55,7 @@ public class Main {
 //		//not complete yet
 //	}
 	
-	public static Items generateTestItems() {
+	public static Items fixedTestItems() {
 		Items i = new Items();
 		i.add(new Item(200, 88)); //(value, weight)
 		i.add(new Item(600, 2));
@@ -64,40 +65,41 @@ public class Main {
 		i.add(new Item(4, 3));
 		i.add(new Item(8, 6));
 		i.add(new Item(11, 5));
-		
-		i.add(new Item(200, 88)); //(value, weight)
-		i.add(new Item(600, 2));
-		i.add(new Item(100, 3));
-		i.add(new Item(500, 99));
-		i.add(new Item(7, 4));
-		i.add(new Item(4, 3));
-		i.add(new Item(8, 6));
-		i.add(new Item(11, 5));
-		
-		i.add(new Item(10, 2));
-		i.add(new Item(10, 2));
 		return i;
 	}
 	
 	public static Items randomizeTestItems(int nbrOfItems) {
 		Items items = new Items();
 		for (int i = 0; i < nbrOfItems; i++) {
-			items.add(new Item(rand.nextInt(1000), rand.nextInt(100)));
+			items.add(new Item(1+rand.nextInt(1000), 1+rand.nextInt(100)));
 		}
 		return items;
 	}
 	
-	public static void test() {
-		MultipleKnapsacks mk = new MultipleKnapsacks();
-		mk.setItemList(randomizeTestItems(15));
-		mk.addKnapsack(new Knapsack(150));
-		mk.addKnapsack(new Knapsack(5));
-		mk.addKnapsack(new Knapsack(400));
-		mk.greedySolution();
-		mk.printKnapsacks();
-		mk.printStats();
+	public static ArrayList<Knapsack> randomizeKnapsacks(int nbrOfKnapssacks) {
+		ArrayList<Knapsack> knapsacks = new ArrayList<Knapsack>();
+		for (int i = 0; i < nbrOfKnapssacks; i++) {
+			knapsacks.add(new Knapsack(1+rand.nextInt(100)));
+		}
+		return knapsacks;
 	}
 	
+	public static void test() {
+		MultipleKnapsacks solution = new MultipleKnapsacks(randomizeTestItems(15), randomizeKnapsacks(3));
+		solution.printKnapsacks();
+		solution.printStats();
+		
+//		MultipleKnapsacks rotateSolution = solution.getCopy();
+//		rotateSolution.neighborSearchSolution();
+//		rotateSolution.printKnapsacks();
+//		rotateSolution.printStats();
+//		for(int t = 0; t < 10; t++) {
+//			// Determine (all points in) neighborhood
+//			// if value(newSolution) > value(previousSolution)) return newSolution
+//			solution.neighborSearchSolution(null);
+//		}
+	}
+
 	public static void main(String[] args) {
 		test();
 	}

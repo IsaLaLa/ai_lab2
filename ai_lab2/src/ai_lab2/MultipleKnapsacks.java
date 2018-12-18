@@ -8,26 +8,26 @@ public class MultipleKnapsacks {
 	private Items leftoverItems = new Items();
 	
 	public MultipleKnapsacks() {}
+	
+	private MultipleKnapsacks(ArrayList<Knapsack> knapsacks, Items itemz, Items leftoverItems) {
+		this.itemz = itemz;
+		this.knapsacks = knapsacks;
+		this.leftoverItems = leftoverItems;
+	}
 
 	public MultipleKnapsacks(Items itemz, ArrayList<Knapsack> knapsacks) {
 		this.itemz = itemz;
 		this.knapsacks = knapsacks;
+		greedySolution(this.itemz);
 	}
-    
-    public boolean isAllKnapsacksFull() {
-    	for(Knapsack k : knapsacks) {
-    		if (!k.isFull()) return false;
-    	}
-    	return true;
-    }
     
     /**
      * a greedy solution to the multiple knapsack problem
      * @param items
      */
-    public void greedySolution() {
-    	while (!itemz.isEmpty() && !isAllKnapsacksFull()) {
-    		Item item = itemz.removeBestBenefitItem();
+    private void greedySolution(Items items) {
+    	while (!items.isEmpty() && !isAllKnapsacksFull()) {
+    		Item item = items.removeBestBenefitItem();
         	for (Knapsack k : knapsacks) {
         		if (k.doesItemFit(item)) {
         			k.addItem(item);
@@ -44,9 +44,46 @@ public class MultipleKnapsacks {
     /**
      * solving the multiple knapsack problem by using neighborhood search
      */
-	public void neighborSearchSolution(ArrayList<Item> items) {
-		//to be implemented
+	public void neighborSearchSolution() {
+		
+		
+		Items rotateItems = new Items();
+		for (int i = 0; i < knapsacks.size(); i++) {
+			rotateItems.add(knapsacks.get(i).removeHeuristic());
+		}
+		System.out.println("Rotate Items:");
+		rotateItems.printItems();
+
+		for (int i = 0; i < rotateItems.size(); i++) {
+			Item item = rotateItems.peek(i);
+			for (Knapsack k : knapsacks) {
+				if (k.doesItemFit(item)) {
+        			k.addItem(rotateItems.remove(i));
+        			item = null;
+        			break;
+        		}
+			}
+		}
+		
+		// if there is leftover items:
+		// Get nearby feasible solutions by:
+		// Move item from one knapsack to another
+		// Remove item from knapsack to make room for leftover items
+		// Move leftover item into knapsack
+		// Return new solution
 	}
+	
+	public MultipleKnapsacks getCopy() {
+		// make copy of knapsacks, itemz, leftoverItems
+		return new MultipleKnapsacks();
+	}
+	
+    public boolean isAllKnapsacksFull() {
+    	for(Knapsack k : knapsacks) {
+    		if (!k.isFull()) return false;
+    	}
+    	return true;
+    }
 	
 	public int getTotalWeight() {
 		int weight = 0;
@@ -64,42 +101,21 @@ public class MultipleKnapsacks {
 		return value;
 	}
 	
-	public int getMaxCapacity() {
-		int cap = 0;
+	public int getTotalFreeWeight() {
+		int freeWeight = 0;
 		for (Knapsack k : knapsacks) {
-			cap += k.getMaxCapacity();
+			freeWeight += k.getFreeWeight();
 		}
-		return cap;
-	}
-	
-    public void addItem(Item item) {
-    	itemz.add(item);
-    }
-	
-    public void setItemList(Items items) {
-    	this.itemz = items;
-    }
-    
-    /**
-     * adds a knapsack to the knapsack-list
-     * @param knapsack
-     */
-    public void addKnapsack(Knapsack knapsack) {
-    	if (knapsack != null) {
-    		knapsacks.add(knapsack);
-    	}
-    }
-
-	public void setKnapsacks(ArrayList<Knapsack> knapsacks) {
-		this.knapsacks = knapsacks;
+		return freeWeight;
 	}
     
     public void printStats() {
-    	System.out.println("Leftover items: ");
+    	System.out.println("Leftover items(" + leftoverItems.size() + "): ");
     	leftoverItems.printItems();
 		System.out.println("MK total value: " + getTotalValue());
-		System.out.println("MK max capacity: " + getMaxCapacity());
 		System.out.println("MK total weight: " + getTotalWeight());
+		System.out.println("MK free weight: " + getTotalFreeWeight());
+		System.out.println("-----------------------------------------------------");
     }
 
 	/**
@@ -109,11 +125,57 @@ public class MultipleKnapsacks {
 		Knapsack k;
 		for (int i = 0; i < knapsacks.size(); i++) {
 			k = knapsacks.get(i);
-			System.out.println("Knapsack " + i + ", value: " + k.getValue() + ", maxWeight: " + k.getMaxCapacity() + ", freeWeight: " + k.getFreeWeight() + ":");
+			System.out.println("Knapsack " + i + ", value: " + k.getValue() + ", weightCap: " + k.getMaxCapacity() + ", freeWeight: " + k.getFreeWeight() + ":");
 			k.printItems();
 			System.out.println();
 		}
 	}
+	
+//	/**
+//	 * returns the list of knapsacks
+//	 * @return
+//	 */
+//   public ArrayList<Knapsack> getKnapsacks() {
+//       return knapsacks;
+//   }
+//   
+//   /**
+//    * returns the list of items
+//    * @return
+//    */
+//   public ArrayList<Item> getItems() {
+//       return items;
+//   }
+//	
+//    public void addItem(Item item) {
+//    	itemz.add(item);
+//    }
+//	
+//    public void setItemList(Items items) {
+//    	this.itemz = items;
+//    }
+//    
+//    /**
+//     * adds a knapsack to the knapsack-list
+//     * @param knapsack
+//     */
+//    public void addKnapsack(Knapsack knapsack) {
+//    	if (knapsack != null) {
+//    		knapsacks.add(knapsack);
+//    	}
+//    }
+//
+//	public void setKnapsacks(ArrayList<Knapsack> knapsacks) {
+//		this.knapsacks = knapsacks;
+//	}
+	
+//	public int getMaxCapacity() {
+//	int cap = 0;
+//	for (Knapsack k : knapsacks) {
+//		cap += k.getMaxCapacity();
+//	}
+//	return cap;
+//}
 	
 //	// bara för att testa att lägga till items i en knapsack, ska bort sen
 //	public void testAdding() {
@@ -185,21 +247,4 @@ public class MultipleKnapsacks {
 //		}
 //	}
 	
-//	/**
-//	 * returns the list of knapsacks
-//	 * @return
-//	 */
-//    public ArrayList<Knapsack> getKnapsacks() {
-//        return knapsacks;
-//    }
-//    
-//    /**
-//     * returns the list of items
-//     * @return
-//     */
-//    public ArrayList<Item> getItems() {
-//        return items;
-//    }
-//	
-
 }

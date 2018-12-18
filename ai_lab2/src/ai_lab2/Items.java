@@ -9,13 +9,15 @@ public class Items {
 	 * Add item and keep list sorted. O(N)
 	 */
 	public void add(Item item) {
-		for (int i = 0; i < items.size(); i++) {
-			if (items.get(i).getBenefit() < item.getBenefit()) {
-				items.add(i, item);
-				return;
+		if (item != null) {
+			for (int i = 0; i < items.size(); i++) {
+				if (items.get(i).getBenefit() < item.getBenefit()) {
+					items.add(i, item);
+					return;
+				}
 			}
+			items.addLast(item);
 		}
-		items.addLast(item);
 	}
 	
 	public Item remove(int index) {
@@ -57,6 +59,21 @@ public class Items {
 			}
 		}
 		return items.remove(bestIndex);
+	}
+	
+	
+	public Item removeLowestValue() {
+		if (items.isEmpty()) return null;
+		int lowestValue = Integer.MAX_VALUE;
+		int lowestIndex = -1;
+		for (int i = 0; i < items.size(); i++) {
+			int currentItemValue = items.get(i).getValue();
+			if (currentItemValue < lowestValue) {
+				lowestValue = currentItemValue;
+				lowestIndex = i;
+			}
+		}
+		return items.remove(lowestIndex);
 	}
 	
 	/**
