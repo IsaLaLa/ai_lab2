@@ -1,5 +1,6 @@
 package ai_lab2;
 
+import java.util.Random;
 
 /**
  * Main program for the multiple knapsack problem
@@ -7,6 +8,7 @@ package ai_lab2;
  *
  */
 public class Main {
+	public static final Random rand = new Random();
 //	private static MultipleKnapsacks mk;
 //	private static ArrayList<Item> items;
 	
@@ -77,14 +79,26 @@ public class Main {
 		return i;
 	}
 	
-	public static void main(String[] args) {
+	public static Items randomizeTestItems(int nbrOfItems) {
+		Items items = new Items();
+		for (int i = 0; i < nbrOfItems; i++) {
+			items.add(new Item(rand.nextInt(1000), rand.nextInt(100)));
+		}
+		return items;
+	}
+	
+	public static void test() {
 		MultipleKnapsacks mk = new MultipleKnapsacks();
-		mk.setItemList(generateTestItems());
-		mk.addKnapsack(new Knapsack(15));
+		mk.setItemList(randomizeTestItems(15));
+		mk.addKnapsack(new Knapsack(150));
 		mk.addKnapsack(new Knapsack(5));
 		mk.addKnapsack(new Knapsack(400));
 		mk.greedySolution();
 		mk.printKnapsacks();
 		mk.printStats();
+	}
+	
+	public static void main(String[] args) {
+		test();
 	}
 }
