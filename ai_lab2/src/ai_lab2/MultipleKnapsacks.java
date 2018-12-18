@@ -3,8 +3,8 @@ package ai_lab2;
 import java.util.ArrayList;
 
 public class MultipleKnapsacks {
-	private static ArrayList<Knapsack> knapsacks;
-	private static ArrayList<Item> items;
+	private ArrayList<Knapsack> knapsacks;
+	private ArrayList<Item> items;
 
 	/**
 	 * constructor

@@ -61,11 +61,13 @@ public class Knapsack {
 	/**
 	 * adds an item to the knapsack
 	 * @param item
+	 * @throws Exception 
 	 */
-	public void addItem(Item item) {
+	public void addItem(Item item) throws IllegalArgumentException {
 		if(item != null) {
 			value = value +  item.getValue();
 			weight = weight + item.getWeight();
+			if (weight > maxCapacity) throw new IllegalArgumentException("Knapsack maxCapacity exceeded: " + weight);
 			items.add(item);
 		}
 	}
@@ -76,9 +78,10 @@ public class Knapsack {
 	 */
 	public void removeItem(Item item) {
 		if(item != null) {
-			value = value - item.getValue();
-			weight = weight - item.getWeight();	
-			items.remove(item);
+			if (items.remove(item)) {
+				value = value - item.getValue();
+				weight = weight - item.getWeight();	
+			}
 		}
 	}
 	

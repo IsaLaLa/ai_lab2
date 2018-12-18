@@ -39,6 +39,6 @@ public class Item {
 	 * @return the items benefit
 	 */
 	public double getBenefit() {
-		return (double) (value / weight);
+		return ((double)value / weight);
 	}
 }
