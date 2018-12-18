@@ -14,6 +14,22 @@ public class MultipleKnapsacks {
 		items = new ArrayList<Item>();
 	}
 	
+	public int getTotalWeight() {
+		int weight = 0;
+		for (Knapsack k : knapsacks) {
+			weight += k.getWeight();
+		}
+		return weight;
+	}
+	
+	public int getTotalValue() {
+		int value = 0;
+		for (Knapsack k : knapsacks) {
+			value += k.getValue();
+		}
+		return value;
+	}
+	
 	/**
 	 * returns the list of knapsacks
 	 * @return

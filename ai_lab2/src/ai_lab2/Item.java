@@ -14,6 +14,7 @@ public class Item {
 	 * @param weight
 	 */
 	public Item(int value, int weight) {
+		if (value < 0 || weight < 0) throw new IllegalArgumentException("Only positive value and weight allowed.");
 		this.value = value;
 		this.weight = weight;
 	}
