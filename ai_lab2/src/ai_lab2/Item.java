@@ -4,7 +4,7 @@ package ai_lab2;
  * Represents an item that can be added to a knapsack
  * Each item has a value and a weight, and a benefit-attribute
  */
-public class Item implements Comparable<Item> {
+public final class Item implements Comparable<Item> {
 	private int value;
 	private int weight;
 	private double benefit;

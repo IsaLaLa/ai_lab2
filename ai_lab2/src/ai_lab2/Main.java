@@ -85,19 +85,27 @@ public class Main {
 	}
 	
 	public static void test() {
-		MultipleKnapsacks solution = new MultipleKnapsacks(randomizeTestItems(15), randomizeKnapsacks(3));
-		solution.printKnapsacks();
-		solution.printStats();
+		// Get greedy solution
+		MultipleKnapsacks bestSolutionSoFar = new MultipleKnapsacks(randomizeTestItems(15), randomizeKnapsacks(3));
 		
-//		MultipleKnapsacks rotateSolution = solution.getCopy();
-//		rotateSolution.neighborSearchSolution();
-//		rotateSolution.printKnapsacks();
-//		rotateSolution.printStats();
-//		for(int t = 0; t < 10; t++) {
-//			// Determine (all points in) neighborhood
-//			// if value(newSolution) > value(previousSolution)) return newSolution
-//			solution.neighborSearchSolution(null);
-//		}
+		// Do neighborhood search if solution can be improved
+		if (!bestSolutionSoFar.isAllKnapsacksFull() && bestSolutionSoFar.hasLeftOverItems()) {
+			for (int strategy = 0; strategy < 3; strategy++) { // Set neighborhood strategy
+				MultipleKnapsacks rotateSolution = bestSolutionSoFar.copy();
+				rotateSolution.neighborSearchSolution(strategy);
+				System.out.println("Rotation strategy(" + strategy + "): Neighborhood value: " + rotateSolution.getTotalValue() + ", previousSolution value: " + bestSolutionSoFar.getTotalValue());
+				if (rotateSolution.getTotalValue() > bestSolutionSoFar.getTotalValue()) {
+					bestSolutionSoFar = rotateSolution;
+					strategy = 0; // Start over with first strategy on new best solution
+					System.out.println("New best solution found, value: " + rotateSolution.getTotalValue());
+				}
+			}
+		} else {
+			System.out.println("Solution can't be improved");
+		}
+		System.out.println("Chosen solution: ");
+		bestSolutionSoFar.printKnapsacks();
+		bestSolutionSoFar.printStats();	
 	}
 
 	public static void main(String[] args) {

@@ -11,7 +11,7 @@ public class Knapsack {
 	private final int maxCapacity; //how much weight the knapsack can hold, unchangeable once set
 	private int value; //how much value the knapsack currently has
 	private int weight; //how much the knapsack is currently weighting
-	private Items items = new Items(); //to keep track of the added items to the knapsack
+	public Items items; //to keep track of the added items to the knapsack
 	
 	/**
 	 * constructor
@@ -22,6 +22,19 @@ public class Knapsack {
 		this.maxCapacity = maxCapacity;
 		this.value = 0;
 		this.weight = 0;
+		this.items = new Items();
+	}
+	
+	//Used internally for copy
+	private Knapsack(int maxCapacity, int value, int weight, Items items) {
+		this.maxCapacity = maxCapacity;
+		this.value = value;
+		this.weight = weight;
+		this.items = items;
+	}
+	
+	public Knapsack copy() {
+		return new Knapsack(maxCapacity, value, weight, items.copy());
 	}
 	
 	/**
@@ -43,8 +56,8 @@ public class Knapsack {
 	 * removes an item from the knapsack
 	 * @param item
 	 */
-	public Item removeHeuristic() {
-		Item item = items.removeLowestWeight();
+	public Item removeItem(int index) {
+		Item item = items.remove(index);
 		if (item != null) {
 			value -= item.getValue();
 			weight -= item.getWeight();
