@@ -99,7 +99,7 @@ public class Knapsack {
 	}
 	
 	/**
-	 * prints the items of the knapsack
+	 * prints the items and properties of the knapsack
 	 */
 	public void printItems() {
 		String format1 = "%-7s %s\n";

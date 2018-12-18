@@ -86,7 +86,7 @@ public class MultipleKnapsacks {
 	}
 	
 	/**
-	 * prints all the knapsacks and their content
+	 * prints all the knapsacks contents and properties
 	 */
 	public void printKnapsacks() {
 		Knapsack currentKnapsack;
