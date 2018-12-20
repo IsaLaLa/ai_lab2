@@ -10,62 +10,22 @@ import java.util.Random;
  */
 public class Main {
 	public static final Random rand = new Random();
-//	private static MultipleKnapsacks mk;
-//	private static ArrayList<Item> items;
-	
-//	/**
-//	 * method for testing the greedy solution
-//	 */
-//	public static void testGreedySolution() {
-//		mk.greedySolution(items);
-//	}
-//	
-//	/**
-//	 * method for testing the neighbor search solution
-//	 */
-//	public static void testNeighborSearchSolution() {
-//		mk.neighborSearchSolution(items);
-//	}
-	
-//	public static void someTest() {
-//		//creates a list of knapsacks with varying maximum weight capacity
-//		mk = new MultipleKnapsacks();
-//		mk.addKnapsack(new Knapsack(25));
-//		mk.addKnapsack(new Knapsack(15));
-//		//mk.addKnapsack(new Knapsack(40));
-//		
-//		//creates a list of items
-//		items = new ArrayList<Item>();
-//		items.add(new Item(2, 88)); //(value, weight)
-//		items.add(new Item(6, 2));
-//		items.add(new Item(1, 3));
-//		items.add(new Item(5, 99));
-////		items.add(new Item(7, 4));
-////		items.add(new Item(4, 3));
-////		items.add(new Item(8, 6));
-////		items.add(new Item(11, 5));
-//		
-//		mk.setItemList(items);
-//		mk.testAdding();
-//		mk.printKnapsacks();
-//		
-//		//testGreedySolution();
-//		//testNeighborSearchSolution();
-//		
-//		//not complete yet
-//	}
 	
 	public static Items fixedTestItems() {
 		Items i = new Items();
-		i.add(new Item(200, 88)); //(value, weight)
-		i.add(new Item(600, 2));
-		i.add(new Item(100, 3));
-		i.add(new Item(500, 99));
-		i.add(new Item(7, 4));
-		i.add(new Item(4, 3));
-		i.add(new Item(8, 6));
-		i.add(new Item(11, 5));
+		i.add(new Item(2600, 70)); // (value, weight)
+		i.add(new Item(50, 2));
+		i.add(new Item(40, 9));
+		i.add(new Item(25, 9));
+		i.add(new Item(35, 14));
 		return i;
+	}
+	
+	public static ArrayList<Knapsack> fixedTestKnapsacks() {
+		ArrayList<Knapsack> knapsacks = new ArrayList<Knapsack>();
+		knapsacks.add(new Knapsack(30));
+		knapsacks.add(new Knapsack(15));
+		return knapsacks;
 	}
 	
 	public static Items randomizeTestItems(int nbrOfItems) {
@@ -84,11 +44,14 @@ public class Main {
 		return knapsacks;
 	}
 	
-	public static void test() {
-		// Get greedy solution
+	// Get greedy solution
+	public static MultipleKnapsacks runGreedy() {
 		MultipleKnapsacks bestSolutionSoFar = new MultipleKnapsacks(randomizeTestItems(15), randomizeKnapsacks(3));
-		
-		// Do neighborhood search if solution can be improved
+		return bestSolutionSoFar;
+	}
+	
+	// Do neighborhood search if solution can be improved	
+	public static MultipleKnapsacks runNeighborhoodSearch(MultipleKnapsacks bestSolutionSoFar) {
 		if (!bestSolutionSoFar.isAllKnapsacksFull() && bestSolutionSoFar.hasLeftOverItems()) {
 			for (int strategy = 0; strategy < 3; strategy++) { // Set neighborhood strategy
 				MultipleKnapsacks rotateSolution = bestSolutionSoFar.copy();
@@ -96,19 +59,21 @@ public class Main {
 				System.out.println("Rotation strategy(" + strategy + "): Neighborhood value: " + rotateSolution.getTotalValue() + ", previousSolution value: " + bestSolutionSoFar.getTotalValue());
 				if (rotateSolution.getTotalValue() > bestSolutionSoFar.getTotalValue()) {
 					bestSolutionSoFar = rotateSolution;
-					strategy = 0; // Start over with first strategy on new best solution
+					strategy = -1; // Start over with first strategy on new best solution
 					System.out.println("New best solution found, value: " + rotateSolution.getTotalValue());
 				}
 			}
 		} else {
 			System.out.println("Solution can't be improved");
 		}
-		System.out.println("Chosen solution: ");
-		bestSolutionSoFar.printKnapsacks();
-		bestSolutionSoFar.printStats();	
+		return bestSolutionSoFar;
 	}
 
 	public static void main(String[] args) {
-		test();
+		MultipleKnapsacks greedySolution = runGreedy();
+		MultipleKnapsacks bestSolutionSoFar = runNeighborhoodSearch(greedySolution);
+		System.out.println("Chosen solution: ");
+		bestSolutionSoFar.printKnapsacks();
+		bestSolutionSoFar.printStats();	
 	}
 }
