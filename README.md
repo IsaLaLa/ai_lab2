@@ -1,5 +1,5 @@
 # ai_lab2
-##About
+## About
 Laboration 2, where the program provides solution to the Knapsack problem.
 
 Included in course: Artificial Intelligence (DA272A).
