@@ -1,6 +1,7 @@
 # ai_lab2
-Lab 2
+##About
+Laboration 2, where the program provides solution to the Knapsack problem.
 
-Kurs: Artificial Intelligence (DA272A).
+Included in course: Artificial Intelligence (DA272A).
 
-Gick kursen: Termin 5 Systemutvecklare, ht 2018.
+Went the course: Termin 5 Systemutvecklare at Malmö Unversity, ht 2018.
