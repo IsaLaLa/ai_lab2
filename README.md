@@ -8,4 +8,4 @@ Education: Systemutvecklare (bachelor degree) (eng. Software developer) at Malm√
 
 Cource: Artificial Intelligence (DA272A).
 
-Went the course: Termin 5 Systemutvecklare at Malm√∂ Unversity, ht 2018.
+Went the course: Termin 5, ht 2018.
